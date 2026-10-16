@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sunday Super League</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #061b12;
+            color: white;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: #032b1b;
+
+            padding: 18px 5%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            box-shadow: 0 3px 15px rgba(0,0,0,0.4);
+        }
+
+        nav h2 {
+            color: #00ff88;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+
+            margin-left: 18px;
+
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00ff88;
+        }
+
+
+        /* ================= HOME ================= */
+
+        .hero {
+
+            min-height: 80vh;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.35),
+                    rgba(0,0,0,0.65)
+                ),
+                url("images/background.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            margin: 15px 0;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+
+            display: inline-block;
+
+            background: #00e676;
+            color: #003d23;
+
+            padding: 12px 25px;
+
+            border-radius: 25px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #00ff99;
+            transform: scale(1.05);
+        }
+
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 70px 6%;
+        }
+
+        .section h2 {
+
+            text-align: center;
+
+            color: #00ff88;
+
+            font-size: 35px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* ================= TEAMS ================= */
+
+        .teams-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+        .team-card {
+
+            background: #0b3b26;
+
+            border: 1px solid #00b866;
+
+            border-radius: 20px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0,0,0,0.3);
+
+            overflow: hidden;
+        }
+
+        .team-photo {
+
+            width: 100%;
+
+            height: 230px;
+
+            object-fit: cover;
+
+            border-radius: 15px;
+
+            margin-bottom: 18px;
+
+            display: block;
+        }
+
+        .team-card h3 {
+
+            font-size: 25px;
+
+            margin-bottom: 10px;
+        }
+
+        .team-card p {
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ================= PLAYERS ================= */
+
+        .players-container {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 22px;
+        }
+
+        .player-card {
+
+            background: #0b3b26;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border: 1px solid #00b866;
+        }
+
+        .player-card img {
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            margin-bottom: 15px;
+
+            border: 4px solid #00e676;
+        }
+
+        .player-photo-placeholder {
+
+            width: 120px;
+
+            height: 120px;
+
+            border-radius: 50%;
+
+            margin: 0 auto 15px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: #176b45;
+
+            border: 4px solid #00e676;
+
+            font-size: 35px;
+        }
+
+        .player-card h3 {
+            margin-bottom: 8px;
+        }
+
+        .player-card p {
+            color: #b8ffd9;
+            margin: 5px;
+        }
+
+
+        /* ================= FIXTURES ================= */
+
+        .fixture-list {
+
+            max-width: 800px;
+
+            margin: auto;
+        }
+
+        .fixture {
+
+            background: #0b3b26;
+
+            border-left: 5px solid #00e676;
+
+            padding: 20px;
+
+            margin-bottom: 15px;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+        .fixture strong {
+            color: #00ff88;
+        }
+
+
+        /* ================= GOALS ================= */
+
+        .goal-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            background: #0b3b26;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+        }
+
+        .goal-table th,
+        .goal-table td {
+
+            padding: 15px;
+
+            border-bottom:
+                1px solid #276346;
+
+            text-align: center;
+        }
+
+        .goal-table th {
+
+            background: #032b1b;
+
+            color: #00ff88;
+        }
+
+
+        /* ================= TEAM POPUP ================= */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 2000;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background:
+                rgba(0,0,0,0.8);
+
+            overflow-y: auto;
+
+            padding: 40px 15px;
+        }
+
+        .modal-content {
+
+            background: #092c1d;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            border: 2px solid #00e676;
+        }
+
+        .close {
+
+            float: right;
+
+            font-size: 30px;
+
+            cursor: pointer;
+
+            color: #00ff88;
+        }
+
+        .modal-content h2 {
+
+            text-align: center;
+
+            color: #00ff88;
+
+            margin-bottom: 25px;
+        }
+
+        .modal-players {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .modal-player {
+
+            background: #0b3b26;
+
+            padding: 15px;
+
+            border-radius: 12px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+
+            background: #021b11;
+
+            text-align: center;
+
+            padding: 25px;
+
+            margin-top: 30px;
+
+            color: #b8ffd9;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            nav a {
+
+                margin: 5px;
+            }
+
+            .hero-content h1 {
+
+                font-size: 35px;
+            }
+
+            .teams-container,
+            .players-container,
+            .modal-players {
+
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+
+                padding: 50px 5%;
+            }
+
+            .team-photo {
+
+                height: 200px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<nav>
+
+    <h2>
+        ⚽ Sunday Super League
+    </h2>
+
+    <div>
+
+        <a href="#home">Home</a>
+
+        <a href="#teams">Teams</a>
+
+        <a href="#players">Players</a>
+
+        <a href="#fixtures">Fixtures</a>
+
+        <a href="#goals">Goals</a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HOME ================= -->
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <p>
+            WELCOME TO
+        </p>
+
+        <h1>
+            SUNDAY SUPER LEAGUE
+        </h1>
+
+        <p>
+            ⚽ Football Tournament ⚽
+        </p>
+
+        <a href="#teams"
+           class="btn">
+
+            View Teams
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= TEAMS ================= -->
+
+<section id="teams" class="section">
+
+    <h2>
+        🏆 Tournament Teams
+    </h2>
+
+
+    <div class="teams-container">
+
+
+       <!-- STAW HAT FC -->
+
+<div class="team-card">
+
+    <div style="
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: visible !important;
+    ">
+
+        <img src="images/team1.jpg"
+             alt="StAW HAT FC"
+             style="
+                 width: 150px !important;
+                 height: 150px !important;
+                 max-width: 150px !important;
+                 max-height: 150px !important;
+                 object-fit: contain !important;
+                 display: block !important;
+             ">
+
+    </div>
+
+    <h3>Staw Hat FC</h3>
+
+    <p>Captain: JOHN</p>
+
+    <p>6 Players</p>
+
+    <button class="btn" onclick="showTeam('Staw Hat FC')">
+        View Team
+    </button>
+
+</div>
+
+
+
+        <!-- GOAT FC -->
+
+        <div class="team-card">
+
+    <div style="
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: visible !important;
+    ">
+
+        <img src="images/team2.jpg"
+             alt="GOAT FC"
+             style="
+                 width: 150px !important;
+                 height: 150px !important;
+                 max-width: 150px !important;
+                 max-height: 150px !important;
+                 object-fit: contain !important;
+                 display: block !important;
+             ">
+
+    </div>
+
+    <h3>Goat FC</h3>
+
+    <p>Captain: MANOJ</p>
+
+    <p>6 Players</p>
+
+    <button class="btn" onclick="showTeam('Goat FC')">
+        View Team
+    </button>
+
+</div>
+
+
+
+        <!-- CR7 UNITED FC -->
+
+        <div class="team-card">
+
+    <div style="
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: visible !important;
+    ">
+
+        <img src="images/team3.jpg"
+             alt="CR7 UNITED FC"
+             style="
+                 width: 150px !important;
+                 height: 150px !important;
+                 max-width: 150px !important;
+                 max-height: 150px !important;
+                 object-fit: contain !important;
+                 display: block !important;
+             ">
+
+    </div>
+
+    <h3>CR7 United FC</h3>
+
+    <p>Captain: ANTO</p>
+
+    <p>6 Players</p>
+
+    <button class="btn" onclick="showTeam('CR7 United FC')">
+        View Team
+    </button>
+
+</div>
+
+
+
+        <!-- 18+ UNITED FC -->
+
+        <div class="team-card">
+
+    <div style="
+        width: 200px !important;
+        height: 200px !important;
+        margin: 0 auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        overflow: visible !important;
+    ">
+
+        <img src="images/team4.jpg"
+             alt="18+ UNITED FC"
+             style="
+                 width: 150px !important;
+                 height: 150px !important;
+                 max-width: 150px !important;
+                 max-height: 150px !important;
+                 object-fit: contain !important;
+                 display: block !important;
+             ">
+
+    </div>
+
+    <h3>18+ United FC</h3>
+
+    <p>Captain: THOMAS</p>
+
+    <p>6 Players</p>
+
+    <button class="btn" onclick="showTeam('18+ United FC')">
+        View Team
+    </button>
+
+</div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PLAYERS ================= -->
+
+<section id="players"
+         class="section">
+
+    <h2>
+        👥 Players
+    </h2>
+
+
+    <div class="players-container">
+
+
+        <!-- STAW HAT -->
+
+        <div class="player-card">
+
+            <img src="images/player1.jpg" alt="player1">  
+
+             <h3>Rohan</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player2.jpg" alt="player2">
+
+            <h3>Aravind</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+  
+             
+             <img src="images/player3.jpg" alt="player3">
+
+            <h3>Simon</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player4.jpg" alt="player4">
+
+            <h3>Naveen</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player5.jpg" alt="player5">
+
+            <h3>Aaron</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Goalkeeper</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player6.jpg" alt="player6">
+
+            <h3>John</h3>
+
+            <p>Staw Hat FC</p>
+
+            <p>Midfielder</p>
+
+        </div>
+
+
+
+        <!-- GOAT FC -->
+
+        <div class="player-card">
+
+            <img src="images/player7.jpg" alt="player7">
+
+            <h3>Jack</h3>
+
+            <p>Goat FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <div class="player-photo-placeholder">
+                👤
+            </div>
+
+            <h3>Jeswin</h3>
+
+            <p>Goat FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player9.jpg" alt="player9">
+
+            <h3>Christopher</h3>
+
+            <p>Goat FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player10.jpg" alt="player10">
+
+            <h3>Praveen</h3>
+
+            <p>Goat FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player11.jpg" alt="player11">
+
+            <h3>Antony</h3>
+
+            <p>Goat FC</p>
+
+            <p>Goalkeeper</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player12.jpg" alt="player12">
+
+            <h3>Manoj</h3>
+
+            <p>Goat FC</p>
+
+            <p>Midfielder</p>
+
+        </div>
+
+
+
+        <!-- CR7 UNITED -->
+
+        <div class="player-card">
+
+            <div class="player-photo-placeholder">
+                👤
+            </div>
+
+            <h3>Naldo</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player14.jpg" alt="player14">
+
+            <h3>Infant</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Midfielder</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player15.jpg" alt="player15">
+
+            <h3>Robin</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player16.jpg" alt="player16">
+
+            <h3>Pratap</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player17.jpg" alt="player17">
+
+            <h3>Sandro</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Goalkeeper</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player18.jpg" alt="player18">
+
+            <h3>Anto</h3>
+
+            <p>CR7 United FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+
+        <!-- 18+ UNITED -->
+
+        <div class="player-card">
+
+            <img src="images/player19.jpg" alt="player19">
+
+            <h3>Fabian</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player20.jpg" alt="player20">
+
+            <h3>Anish</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Forward</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player21.jpg" alt="player21">
+
+            <h3>Donaldo</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Goalkeeper</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+           <img src="images/player22.jpg" alt="player22">
+
+            <h3>Andrew</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <div class="player-photo-placeholder">
+                👤
+            </div>
+
+            <h3>Alphonse</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Defence</p>
+
+        </div>
+
+
+        <div class="player-card">
+
+            <img src="images/player24.jpg" alt="player24">
+
+            <h3>Thomas</h3>
+
+            <p>18+ United FC</p>
+
+            <p>Midfielder</p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FIXTURES ================= -->
+
+<section id="fixtures"
+         class="section">
+
+    <h2>
+        18-10-2026 Match Fixtures
+    </h2>
+
+
+    <div class="fixture-list">
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 1
+            </strong>
+
+            <br>
+
+            Goat FC 🆚 18+ United FC
+
+        </div>
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 2
+            </strong>
+
+            <br>
+
+            CR7 United FC 🆚 Staw Hat FC
+
+        </div>
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 3
+            </strong>
+
+            <br>
+
+            Goat FC 🆚 Staw Hat FC
+
+        </div>
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 4
+            </strong>
+
+            <br>
+
+            CR7 United FC 🆚 18+ United FC
+
+        </div>
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 5
+            </strong>
+
+            <br>
+
+            18+ United FC 🆚 Staw Hat FC
+
+        </div>
+
+
+        <div class="fixture">
+
+            <strong>
+                Match 6
+            </strong>
+
+            <br>
+
+            Goat FC 🆚 CR7 United FC
+
+        </div>
+
+
+    </div>
+
+
+    <br>
+
+
+    <div style="text-align:center;">
+
+        <h3>
+            ⏱ Match Timing
+        </h3>
+
+        <p>
+            7 - 1 - 7
+        </p>
+
+        <p>
+            First Half: 7 Minutes
+        </p>
+
+        <p>
+            Half-time: 1 Minute
+        </p>
+
+        <p>
+            Second Half: 7 Minutes
+        </p>
+
+    </div>
+
+</section>
+<!-- POINTS TABLE -->
+
+<section id="points-table" class="section">
+
+    <h2 class="section-title">
+        🏆 POINTS TABLE
+    </h2>
+
+    <p class="section-description">
+        Check the current standings of all teams in the tournament.
+    </p>
+
+    <div class="table-container">
+        <table class="points-table"
+
+        <table style="
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 25px 12px;
+">
+
+            <thead>
+
+                <tr>
+
+                    <th>Position</th>
+
+                    <th>Team</th>
+
+                    <th>Played</th>
+
+                    <th>Won</th>
+
+                    <th>Draw</th>
+
+                    <th>Lost</th>
+
+                    <th>Goal Difference</th>
+
+                    <th>Points</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>Staw Hat FC</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Goat FC</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Cr7 United FC</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>18+ United FC</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                    <td>0</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= GOALS ================= -->
+
+<section id="goals"
+         class="section">
+
+    <h2>
+        ⚽ Player Goal List
+    </h2>
+
+
+    <table class="goal-table">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Rank
+                </th>
+
+                <th>
+                    Player
+                </th>
+
+                <th>
+                    Team
+                </th>
+
+                <th>
+                    Goals
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody id="goalList">
+
+            <tr>
+
+                <td colspan="4">
+                    No goals recorded yet
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+
+
+
+<!-- ================= TEAM POPUP ================= -->
+
+<div id="teamModal"
+     class="modal">
+
+
+    <div class="modal-content">
+
+
+        <span class="close"
+              onclick="closeTeam()">
+
+            &times;
+
+        </span>
+
+
+        <h2 id="modalTeamName">
+            Team
+        </h2>
+
+
+        <div id="modalPlayers"
+             class="modal-players">
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+        ⚽ Sunday Super League
+    </p>
+
+    <p>
+        4 Teams • 24 Players • 6 Matches
+    </p>
+
+    <p>
+        © 2026 Sunday Super League
+    </p>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const teams = {
+
+        "Staw Hat FC": [
+
+            ["Rohan", "Defence"],
+            ["Aravind", "Forward"],
+            ["Simon", "Forward"],
+            ["Naveen", "Defence"],
+            ["Aaron", "Goalkeeper"],
+            ["John", "Forward"]
+
+        ],
+
+
+        "Goat FC": [
+
+            ["Jack", "Forward"],
+            ["Jeswin", "Forward"],
+            ["Christopher", "Defence"],
+            ["Praveen", "Defence"],
+            ["Antony", "Goalkeeper"],
+            ["Manoj", "Midfielder"]
+
+        ],
+
+
+        "CR7 United FC": [
+
+            ["Naldo", "Forward"],
+            ["Infant", "Midfielder"],
+            ["Robin", "Defence"],
+            ["Pratap", "Defence"],
+            ["Sandro", "Goalkeeper"],
+            ["Anto", "Forward"]
+
+        ],
+
+
+        "18+ United FC": [
+
+            ["Fabian", "Forward"],
+            ["Anish", "Forward"],
+            ["Donaldo", "Goalkeeper"],
+            ["Andrew", "Defence"],
+            ["Alphonse", "Defence"],
+            ["Thomas", "Midfielder"]
+
+        ]
+
+    };
+
+
+
+    function showTeam(teamName) {
+
+        const modal =
+            document.getElementById(
+                "teamModal"
+            );
+
+
+        const modalName =
+            document.getElementById(
+                "modalTeamName"
+            );
+
+
+        const modalPlayers =
+            document.getElementById(
+                "modalPlayers"
+            );
+
+
+        modalName.innerText =
+            teamName;
+
+
+        modalPlayers.innerHTML = "";
+
+
+        teams[teamName].forEach(
+            function(player) {
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                div.className =
+                    "modal-player";
+
+
+                div.innerHTML = `
+
+                    <h3>
+                        👤 ${player[0]}
+                    </h3>
+
+                    <p>
+                        Position:
+                        ${player[1]}
+                    </p>
+
+                `;
+
+
+                modalPlayers.appendChild(
+                    div
+                );
+
+            }
+        );
+
+
+        modal.style.display =
+            "block";
+
+    }
+
+
+
+    function closeTeam() {
+
+        document.getElementById(
+            "teamModal"
+        ).style.display =
+            "none";
+
+    }
+
+
+
+    window.onclick =
+        function(event) {
+
+            const modal =
+                document.getElementById(
+                    "teamModal"
+                );
+
+
+            if (event.target === modal) {
+
+                modal.style.display =
+                    "none";
+
+            }
+
+        };
+
+</script>
+
+
+</body>
+
+</html>
