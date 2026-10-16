@@ -69,7 +69,7 @@ nav ul li a:hover {
             rgba(0, 0, 0, 0.65),
             rgba(0, 0, 0, 0.65)
         ),
-        url("images/background.jpg");
+        url("background.jpg");
 
     background-size: cover;
     background-position: center;
